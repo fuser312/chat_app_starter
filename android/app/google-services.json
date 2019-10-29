@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "525053566008",
+    "firebase_url": "https://singh-sahil001.firebaseio.com",
+    "project_id": "singh-sahil001",
+    "storage_bucket": "singh-sahil001.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525053566008:android:b46e46e0d7cbfeb4375acd",
+        "android_client_info": {
+          "package_name": "com.mclarencollege.chat_app_starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525053566008-7fe3a7gvvmcp3b89khc56otd4trd8qge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB85p0sI-TcIWIZzhnmvErkcJSfb0qGM7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525053566008-7fe3a7gvvmcp3b89khc56otd4trd8qge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
