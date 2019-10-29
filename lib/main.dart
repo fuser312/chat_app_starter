@@ -1,6 +1,7 @@
 import 'registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
+import 'chat_screen.dart';
 
 void main() {
   runApp(
@@ -10,7 +11,7 @@ void main() {
         '/': (context) => WelcomeScreen(),
         'login': (context) => LoginScreen(),
         'register': (context) => RegisterScreen(),
-//        '/chat': (context) => ChatScreen(),
+        'chat': (context) => ChatScreen(),
       },
     ),
   );

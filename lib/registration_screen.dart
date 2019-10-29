@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
+String email;
+String password;
+
 class _RegisterScreenState extends State<RegisterScreen> {
-  String email;
-  String password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +60,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         hintText: 'elon@musk.com',
                         icon: Icon(Icons.email),
                         border: OutlineInputBorder()),
+                    onChanged: (value) {
+                      email = value;
+                    },
                   ),
                   SizedBox(
                     height: 20,
@@ -71,6 +75,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         icon: Icon(Icons.lock),
                         hintText: 'spacexRocks',
                         border: OutlineInputBorder()),
+                    onChanged: (value) {
+                      password = value;
+                    },
                   ),
                   SizedBox(
                     height: 20,
@@ -84,9 +91,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       style: TextStyle(color: Colors.white, fontSize: 21),
                     ),
                     color: Colors.purple,
-                    onPressed: () {
-                      FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
-                      Navigator.pushNamed(context, "login");
+                    onPressed: () async {
+                      try {
+                        AuthResult result = await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: email, password: password);
+                        if (result.user != null) {
+                          Navigator.pushNamed(context, 'login');
+                        }
+                      } catch (e) {
+                        print(e);
+                      }
                     },
                   ),
                 ],
