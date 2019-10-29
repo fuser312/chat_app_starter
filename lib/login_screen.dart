@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -6,6 +9,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  String email;
+  String password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,8 +87,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(color: Colors.white, fontSize: 21),
                     ),
                     color: Colors.blue,
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'chat');
+                    onPressed: () async {
+                      AuthResult authResult = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+                      Navigator.pushNamed(context, "chat");
                     },
                   ),
                 ],

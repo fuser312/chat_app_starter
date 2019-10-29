@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  String email;
+  String password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +85,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     color: Colors.purple,
                     onPressed: () {
-                      Navigator.pushNamed(context, 'register');
+                      FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+                      Navigator.pushNamed(context, "login");
                     },
                   ),
                 ],
