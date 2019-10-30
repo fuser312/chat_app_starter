@@ -31,7 +31,7 @@ class _ChatScreenState extends State<ChatScreen> {
       chatWidget.add(ChatBubble(
         text: text,
         sender: sender,
-        color: sender == currentUserEmail ? Colors.blue : Colors.yellow,
+        color: sender == currentUserEmail ? Colors.green : Colors.white,
         rowAlignment: sender == currentUserEmail
             ? MainAxisAlignment.end
             : MainAxisAlignment.start,
@@ -40,9 +40,9 @@ class _ChatScreenState extends State<ChatScreen> {
             : CrossAxisAlignment.start,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(15.0),
-          bottomRight: Radius.circular(15.0),
-          topLeft: Radius.circular(15.0)))
+          bottomLeft: Radius.circular(16.0),
+          bottomRight: Radius.circular(16.0),
+          topLeft: Radius.circular(16.0)))
       ));
     }
   }
@@ -62,56 +62,53 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           IconButton(
             icon: Icon(Icons.file_download),
-            onPressed: () {
-              getMessages();
+            onPressed: () async {
+              chatWidget.clear();
+              await getMessages();
+              setState(() {
+                
+              });
             },
           ),
         ],
       ),
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(
-                flex: 8,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: chatWidget,
-                )),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    height: 40,
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    child: TextField(
-                      expands: false,
-                      decoration: new InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.black, width: 1.0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.black, width: 1.0),
-                        ),
-                      ),
-                      controller: textController,
-                      autocorrect: false,
-                      autofocus: true,
-                      showCursor: true,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.send),
-                    disabledColor: Colors.grey,
-                    color: Colors.blue,
-                    onPressed: textController.text.isEmpty ? null : sendMessage,
-                  )
-                ],
+                child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: chatWidget,
               ),
+            )),
+            Divider(
+              color: Colors.blue,
+              height: 2,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Container(
+                  height: 40,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: TextField(
+                    expands: false,
+                    controller: textController,
+                    autocorrect: false,
+                    autofocus: false,
+                    showCursor: false,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.send),
+                  disabledColor: Colors.grey,
+                  color: Colors.blue,
+                  onPressed: textController.text.isEmpty ? null : sendMessage,
+                ),
+              ],
             ),
           ],
         ),
